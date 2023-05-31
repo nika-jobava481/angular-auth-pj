@@ -1,0 +1,10 @@
+<div class="input">
+    <div class="labelstatus">
+        <label>e-mail</label><input (click)="check()" checked type="checkbox" #checkbox>
+    </div>
+    <input (input)="checkInp()" type="email" name="e-mail" placeholder="e-mail" #emailInp>
+    <ng-container *ngIf="displaymessage">
+        <small>invalid value</small>
+    </ng-container>
+
+</div>
