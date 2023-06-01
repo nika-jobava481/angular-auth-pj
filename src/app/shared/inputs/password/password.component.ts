@@ -1,4 +1,4 @@
-import { Component ,ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import { Component ,ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import { DataService } from 'src/app/core/data.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class PasswordInputComponent {
   @ViewChild("passInp") passInp!:ElementRef
   @ViewChild("checkbox") checkbox!:ElementRef
   @ViewChild("togglepass") eyeicon!:ElementRef
+
+  @Input() uncheckable:boolean=false
   @Output() passEv:EventEmitter<string>=new EventEmitter()
   displaymessage:boolean=true
 
@@ -27,7 +29,9 @@ export class PasswordInputComponent {
   }
 
   check(){
-    this.checkbox.nativeElement.checked=true
+    if(!this.uncheckable){
+      this.checkbox.nativeElement.checked=true
+    }
   }
 
   tggpass(){

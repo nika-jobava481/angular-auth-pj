@@ -1,0 +1,32 @@
+.input {
+    position: relative;
+    margin: 10px auto;
+    width: 180px;
+
+    * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+    }
+
+    .labelstatus {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &>input {
+        width: 100%;
+        padding: 2px 4px;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+small {
+    color: red;
+}

@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 
+import * as firebase from 'firebase/app';
+import {firebaseConfig} from '../environment/firebase'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,9 +17,16 @@ import { PagesModule } from './pages/pages.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    PagesModule
+    PagesModule,
+    // AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(){
+    firebase.initializeApp(firebaseConfig)
+  }
+
+}

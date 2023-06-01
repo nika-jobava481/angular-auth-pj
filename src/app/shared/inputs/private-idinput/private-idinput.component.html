@@ -1,1 +1,10 @@
-<p>private-idinput works!</p>
+
+<div class="input">
+    <div class="labelstatus">
+        <label>private ID</label><input (click)="check()" type="checkbox" checked #checkbox>
+    </div>
+    <input (input)="checkInp()" (keydown)="kp($event)" type="number" name="id" placeholder="private ID" #idInp>
+    <ng-container *ngIf="displaymessage">
+        <small>invalid input</small>
+    </ng-container>
+</div>
