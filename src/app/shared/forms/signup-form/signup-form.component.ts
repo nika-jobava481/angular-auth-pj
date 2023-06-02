@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { AuthService } from 'src/app/core/auth.service';
 import { firebaseConfig } from 'src/environment/firebase';
 
 @Component({
@@ -14,35 +15,20 @@ export class SignupFormComponent {
   userpass:string=''
   userid:string=''
 
-  constructor(){
-    firebase.initializeApp(firebaseConfig);
-  }
+  constructor(private authServ:AuthService){}
 
   handleMail(event:string){
-    this.usermail=event
+    this.authServ.usermail=event
   }
   handlePass(event:string){
-    this.userpass=event
+    this.authServ.userpass=event
   }
   handleID(event:string){
-    this.userid=event
-  }
-
-  signUp(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Sign-up successful
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        // Handle sign-up error
-        console.log(error);
-      });
+    this.authServ.userid=event
   }
 
   signUpClick(){
-    this.signUp(this.usermail, this.userpass)
+    this.authServ.signUp(this.authServ.usermail, this.authServ.userpass)
   }
 
 }

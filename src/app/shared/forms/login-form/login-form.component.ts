@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { AuthService } from 'src/app/core/auth.service';
 import { firebaseConfig } from 'src/environment/firebase';
 
 @Component({
@@ -11,39 +12,17 @@ import { firebaseConfig } from 'src/environment/firebase';
 })
 export class LoginFormComponent {
 
-  
-  usermail:string=''
-  userpass:string=''
-
-  constructor(private router: Router){
-    firebase.initializeApp(firebaseConfig);
-  }
+  constructor(private authServ:AuthService){}
 
   handleMail(event:string){
-    this.usermail=event
+    this.authServ.usermail=event
   }
   handlePass(event:string){
-    this.userpass=event
-  }
-
-  signIn(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Sign-in successful
-        const user = userCredential.user;
-        console.log(user);
-        
-        // Navigate to the home screen
-        this.router.navigate(['/home']);
-      })
-      .catch((error) => {
-        // Handle sign-in error
-        console.log(error);
-      });
+    this.authServ.userpass=event
   }
 
   signInClick(){
-    this.signIn(this.usermail, this.userpass)
+    this.authServ.signIn(this.authServ.usermail, this.authServ.userpass)
   }
   
 
