@@ -12,6 +12,7 @@ import { firebaseConfig } from 'src/environment/firebase';
 })
 export class LoginFormComponent {
 
+
   constructor(private authServ:AuthService){}
 
   handleMail(event:string){
@@ -24,6 +25,8 @@ export class LoginFormComponent {
   signInClick(){
     this.authServ.signIn(this.authServ.usermail, this.authServ.userpass)
   }
+
+
   
 
 }

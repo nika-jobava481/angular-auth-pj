@@ -1,1 +1,11 @@
-<p>home works!</p>
+<p>uid: {{user?.uid}}</p>
+<p>mail: {{user?.email}}</p>
+<p>name: {{user?.displayName}}</p>
+<p>img: {{user?.providerData.photoURL}}</p>
+
+<label>display name</label>
+<input type="text" #username>
+<br>
+<img [src]="user?.providerData.photoURL" alt="">
+<button (click)="pushInfo()">updinfo</button>
+<button (click)="signOut()">sign out</button>

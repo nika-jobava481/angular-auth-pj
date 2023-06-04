@@ -13,6 +13,8 @@ export class AuthService {
   userpass:string=''
   userid:string=''
 
+  user:any;
+
   constructor(private router: Router){
     firebase.initializeApp(firebaseConfig);
   }
@@ -21,8 +23,9 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Sign-in successful
-        const user = userCredential.user;
-        console.log(user);
+        this.user = userCredential.user;
+        console.log(this.user.uid);
+        console.log(this.user);
         
         // Navigate to the home screen
         this.router.navigate(['/home']);
@@ -30,6 +33,17 @@ export class AuthService {
       .catch((error) => {
         // Handle sign-in error
         console.log(error);
+      });
+  }
+
+  signOut() {
+    firebase.auth().signOut()
+      .then(() => {
+        console.log('Signed out');
+        this.router.navigate(['/login']);
+      })
+      .catch((error) => {
+        console.log('Error signing out:', error);
       });
   }
 
